@@ -19,6 +19,9 @@ namespace Domain.Utilidades
             CreateMap<ExperienciaLaboral, ExperienciaLaboralDTO>().ReverseMap();
             CreateMap<ExperienciaLaboralCDTO, ExperienciaLaboral>();
 
+            CreateMap<EstudiosAcademicos, EstudiosAcademicosDTO>().ReverseMap();
+            CreateMap<EstudiosAcademicosCDTO, EstudiosAcademicos>();
+
         }
     }
 }

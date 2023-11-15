@@ -19,6 +19,8 @@ namespace DataAccess
 
         public DbSet<ExperienciaLaboral> ExperienciaLaboral{ get; set; }
 
+        public DbSet<EstudiosAcademicos> EstudiosAcademicos { get; set; }
+
 
     }
 }
