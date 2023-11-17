@@ -24,7 +24,7 @@ namespace Domain
 
         public async Task<List<EstudiosAcademicosDTO>> Get()
         {
-            var EstudiosAcademicos = await context.Universidad.ToListAsync();
+            var EstudiosAcademicos = await context.EstudiosAcademicos.ToListAsync();
             Console.WriteLine(EstudiosAcademicos);
             return mapper.Map<List<EstudiosAcademicosDTO>>(EstudiosAcademicos);
         }

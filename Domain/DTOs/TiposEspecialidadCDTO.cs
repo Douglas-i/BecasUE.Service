@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Domain.DTOs
 {
-    public class SolicitudesAceptadasCDTO
-    {   
+    public class TiposEspecialidadCDTO
+    {
         [Required]
-        public int SolicitudID { get; set; }
-
-        [Required]
-        public DateTime FechaAceptacion { get; set; }
+        [StringLength(maximumLength: 100)]
+        public string NombreTipoEspecialidad { get; set; }
     }
 
 }

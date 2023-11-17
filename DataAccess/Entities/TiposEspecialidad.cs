@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Entities
 {
-    public class SolicitudesAceptadas
+    public class TiposEspecialidad
     {
         [Key]
-        public int SolicitudAceptadaId { get; set; }
+        public int TipoEspecialidadID { get; set; }
 
         [Required]
-        public int SolicitudID { get; set; }
-
-        [Required] 
-        public DateTime FechaAceptacion { get; set; }     
+        [StringLength(maximumLength: 100)]
+        public string NombreTipoEspecialidad { get; set; }
     }
+
 }

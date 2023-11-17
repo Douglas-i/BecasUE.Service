@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BecasUE.Controllers
 {
-     [Route("api/ExperienciaLaboral")]
+    [Route("api/ExperienciaLaboral")]
     public class ExperienciaLaboralController : Controller
     {
         private readonly ILogger<ExperienciaLaboralController> logger;
@@ -27,12 +27,10 @@ namespace BecasUE.Controllers
             return await experienciaLaboral.Get();
         }
 
-       // [HttpPost]
-       // public async Task<ActionResult<string>> Post([FromBody] ExperienciaLaboralCDTO experienciaLaboralCDTO)
-        //{
-          //  return await experienciaLaboral.Post(experienciaLaboralCDTO);
-       // }
+        [HttpPost]
+        public async Task<ActionResult<string>> Post([FromBody] ExperienciaLaboralCDTO experienciaLaboralCDTO)
+        {
+            return await experienciaLaboral.Post(experienciaLaboralCDTO);
+        }
     }
-
-
 }

@@ -24,22 +24,17 @@ namespace Domain
 
         public async Task<List<ExperienciaLaboralDTO>> Get()
         {
-            var universidad = await context.ExperienciaLaboral.ToListAsync();
-            Console.WriteLine(universidad);
-            return mapper.Map<List<ExperienciaLaboralDTO>>(universidad);
+            var experiencialaboral = await context.ExperienciaLaboral.ToListAsync();
+            Console.WriteLine(experiencialaboral);
+            return mapper.Map<List<ExperienciaLaboralDTO>>(experiencialaboral);
         }
 
         public async Task<string> Post(ExperienciaLaboralCDTO experienciaLaboralCDTO)
         {
-            var universidad = mapper.Map<ExperienciaLaboral>(experienciaLaboralCDTO);
-            context.Add(universidad);
+            var experiencialaboral = mapper.Map<ExperienciaLaboral>(experienciaLaboralCDTO);
+            context.Add(experiencialaboral);
             await context.SaveChangesAsync();
             return "Creado Correctamente";
-        }
-
-        public Task<Microsoft.AspNetCore.Mvc.ActionResult<string>> Post(global::BecasUE.Controllers.ExperiencaLaboralCDTO experiencaLaboralCDTO)
-        {
-            throw new NotImplementedException();
         }
     }
 }

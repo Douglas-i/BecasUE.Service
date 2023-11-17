@@ -24,6 +24,9 @@ namespace Domain.Utilidades
 
             CreateMap<SolicitudesAceptadas, SolicitudesAceptadasDTO>().ReverseMap();
             CreateMap<SolicitudesAceptadasCDTO, SolicitudesAceptadas>();
+
+            CreateMap<TiposEspecialidad, TiposEspecialidadDTO>().ReverseMap();
+            CreateMap<TiposEspecialidadCDTO, TiposEspecialidad>();
         }
     }
 }
