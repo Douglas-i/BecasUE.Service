@@ -21,6 +21,14 @@ builder.Services.AddTransient<SolicitudesAceptadasDTO>();
 builder.Services.AddTransient<SolicitudesAceptadasCDTO>();
 builder.Services.AddTransient<SolicitudesAceptadasEP>();
 
+builder.Services.AddTransient<ExperienciaLaboralDTO>();
+builder.Services.AddTransient<ExperienciaLaboralCDTO>();
+builder.Services.AddTransient<ExperienciaLaboralEP>();
+
+builder.Services.AddTransient<EstudiosAcademicosDTO>();
+builder.Services.AddTransient<EstudiosAcademicosCDTO>();
+builder.Services.AddTransient<EstudiosAcademicosEP>();
+
 //Configuraciones para permitir peticiones desde el front
 builder.Services.AddCors(options =>
 {

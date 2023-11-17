@@ -29,6 +29,17 @@ namespace BecasUE.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] SolicitudesAceptadasCDTO solicitudesAceptadasCDTO)
         {
+            if (solicitudesAceptadasCDTO == null)
+            {
+                return BadRequest("El objeto de solicitudesAceptadasCDTO no puede ser nulo.");
+            }
+
+            // Validar el formato de las fechas sin modificar el objeto original
+            if (!DateTime.TryParse(solicitudesAceptadasCDTO.FechaAceptacion, out _))
+            {
+                return BadRequest("Formato de fecha incorrecto.");
+            }
+
             return await SolicitudesAceptadas.Post(solicitudesAceptadasCDTO);
         }
     }

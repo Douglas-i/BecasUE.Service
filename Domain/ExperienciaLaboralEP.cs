@@ -36,10 +36,5 @@ namespace Domain
             await context.SaveChangesAsync();
             return "Creado Correctamente";
         }
-
-        public Task<Microsoft.AspNetCore.Mvc.ActionResult<string>> Post(global::BecasUE.Controllers.ExperiencaLaboralCDTO experiencaLaboralCDTO)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -9,6 +9,7 @@ namespace DataAccess.Entities
 {
     public class EstudiosAcademicos
     {
+        [Key]
         public int EntidadEmisora { get; set; }
         [Required] 
         [StringLength(maximumLength: 100)] 
@@ -19,7 +20,5 @@ namespace DataAccess.Entities
         [Required]
         [StringLength(maximumLength: 1000)]
         public string TituloObtenido { get; set; }
-        [Required]
-        [StringLength(maximumLength: 100)]
     }
 }

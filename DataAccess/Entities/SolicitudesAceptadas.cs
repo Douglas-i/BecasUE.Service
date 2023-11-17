@@ -9,14 +9,14 @@ namespace DataAccess.Entities
 {
     public class SolicitudesAceptadas
     {
+        [Key]
         public int SolicitudAceptadaId { get; set; }
         [Required] 
         [StringLength(maximumLength: 100)] 
         public DateTime FechaAceptacion { get; set; }
         [Required]
         [StringLength(maximumLength: 50)]
-        public int SolicitudID { get; set; }
-        [StringLength(maximumLength: 50)]
+        public int SolicitudID { get; set; }        
        
     }
 }

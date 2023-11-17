@@ -24,14 +24,14 @@ namespace Domain
 
         public async Task<List<EstudiosAcademicosDTO>> Get()
         {
-            var EstudiosAcademicos = await context.Universidad.ToListAsync();
+            var EstudiosAcademicos = await context.EstudiosAcademicos.ToListAsync();
             Console.WriteLine(EstudiosAcademicos);
             return mapper.Map<List<EstudiosAcademicosDTO>>(EstudiosAcademicos);
         }
 
         public async Task<string> Post(EstudiosAcademicosCDTO estudiosAcademicosCDTO)
         {
-            var estudiosAcademicos = mapper.Map<EstudiosAcademicos>(estudiosAcademicosCDTO);
+            var estudiosAcademicos = mapper.Map<EstudiosAcademicos>(estudiosAcademicosCDTO);            
             context.Add(estudiosAcademicos);
             await context.SaveChangesAsync();
             return "Creado Correctamente";

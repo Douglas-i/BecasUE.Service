@@ -9,18 +9,16 @@ namespace Domain.DTOs
 {
     public class EstudiosAcademicosCDTO
     {
+        [Required]
+        [StringLength(maximumLength: 100)]
+        public string FechaFinalizacion { get; set; }
 
-        public int EntidadEmisora { get; set; }
         [Required]
         [StringLength(maximumLength: 100)]
-        public DateTime FechaFinalizacion { get; set; }
-        [Required]
-        [StringLength(maximumLength: 100)]
-        public DateTime FechaInicio { get; set; }
+        public string FechaInicio { get; set; }
+
         [Required]
         [StringLength(maximumLength: 1000)]
         public string TituloObtenido { get; set; }
-        [Required]
-        [StringLength(maximumLength: 100)]
     }
 }
