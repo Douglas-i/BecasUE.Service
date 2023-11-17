@@ -12,9 +12,7 @@ namespace DataAccess.Entities
         [Key]
         public int SolicitudAceptadaId { get; set; }
         [Required] 
-        [StringLength(maximumLength: 100)] 
-        public DateTime FechaAceptacion { get; set; }
-        [Required]
+        public DateTime FechaAceptacion { get; set; }     
         [StringLength(maximumLength: 50)]
         public int SolicitudID { get; set; }        
        

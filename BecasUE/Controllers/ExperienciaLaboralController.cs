@@ -1,4 +1,4 @@
-﻿using DataAccess.Entities;
+using DataAccess.Entities;
 using DataAccess.Migrations;
 using Domain;
 using Domain.DTOs;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BecasUE.Controllers
 {
-     [Route("api/ExperienciaLaboral")]
+    [Route("api/ExperienciaLaboral")]
     public class ExperienciaLaboralController : Controller
     {
         private readonly ILogger<ExperienciaLaboralController> logger;
@@ -47,6 +47,4 @@ namespace BecasUE.Controllers
             //return await experienciaLaboral.Post(experienciaLaboralCDTO);
         }
     }
-
-
 }

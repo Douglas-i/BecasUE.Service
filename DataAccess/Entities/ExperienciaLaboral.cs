@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,13 +14,17 @@ namespace DataAccess.Entities
         [Required] // Validacion para que este atributo sea requerrido
         [StringLength(maximumLength: 100)] // Validacion para el tamaño de archivo
         public string Puesto{ get; set; }
+
         [Required]
         [StringLength(maximumLength: 100)]
         public string EntidadTrabajo{ get; set; }
-        [StringLength(maximumLength: 1000)]
+
+        [Required]
         public DateTime FechaInicio { get; set; }
-        [StringLength(maximumLength: 50)]
+
+        [Required]
         public DateTime FechaFinalizacion { get; set; }
+
         [StringLength(maximumLength: 50)]
         public string CandidatoID { get; set; }        
     }

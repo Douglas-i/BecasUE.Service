@@ -16,6 +16,13 @@ builder.Services.AddTransient<UniversidadDTO>();
 builder.Services.AddTransient<UniversidadCreacionDTO>();
 builder.Services.AddTransient<UniversidadEndPoints>();
 
+builder.Services.AddTransient<EstudiosAcademicosDTO>();
+builder.Services.AddTransient<EstudiosAcademicosCDTO>();
+builder.Services.AddTransient<EstudiosAcademicosEP>();
+
+builder.Services.AddTransient<ExperienciaLaboralDTO>();
+builder.Services.AddTransient<ExperienciaLaboralCDTO>();
+builder.Services.AddTransient<ExperienciaLaboralEP>();
 
 builder.Services.AddTransient<SolicitudesAceptadasDTO>();
 builder.Services.AddTransient<SolicitudesAceptadasCDTO>();
@@ -32,7 +39,7 @@ builder.Services.AddTransient<EstudiosAcademicosEP>();
 //Configuraciones para permitir peticiones desde el front
 builder.Services.AddCors(options =>
 {
-    // Acceder a la configuración
+    // Acceder a la configuraciÃ³n
     string allowedOrigins = builder.Configuration["FrontEnd_Url"];
 
     options.AddDefaultPolicy(builder =>
