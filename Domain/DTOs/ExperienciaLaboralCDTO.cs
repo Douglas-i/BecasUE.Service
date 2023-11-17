@@ -8,22 +8,18 @@ using System.Threading.Tasks;
 namespace Domain.DTOs
 {
     public class ExperienciaLaboralCDTO
-    {       
-        [Required]
-        [StringLength(maximumLength: 100)]
+    {        
+        [Required] 
+        [StringLength(maximumLength: 100)] 
         public string Puesto { get; set; }
-
         [Required]
         [StringLength(maximumLength: 100)]
         public string EntidadTrabajo { get; set; }
-
-        [Required]
-        public DateTime FechaInicio { get; set; }
-
-        [Required]
-        public DateTime FechaFinalizacion { get; set; }
-
-        [Required]
-        public int CandidatoID { get; set; }
+        [StringLength(maximumLength: 1000)]
+        public string FechaInicio { get; set; }
+        [StringLength(maximumLength: 50)]
+        public string FechaFinalizacion { get; set; }
+        [StringLength(maximumLength: 50)]
+        public string CandidatoID { get; set; }        
     }
 }

@@ -14,7 +14,7 @@ namespace BecasUE.Controllers
         private readonly EstudiosAcademicosDTO estudiosAcademicosDTO;
         //private readonly ApplicationDbContext context;
 
-        public EstudiosAcademicosController(ILogger<EstudiosAcademicosController> logger,EstudiosAcademicosEP estudiosAcademicos, EstudiosAcademicosDTO estudiosAcademicosDTO)
+        public EstudiosAcademicosController(ILogger<EstudiosAcademicosController> logger, EstudiosAcademicosEP estudiosAcademicos, EstudiosAcademicosDTO estudiosAcademicosDTO)
         {
             this.logger = logger;
             this.estudiosAcademicos = estudiosAcademicos;
@@ -30,7 +30,20 @@ namespace BecasUE.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] EstudiosAcademicosCDTO estudiosAcademicosCDTO)
         {
+            if (estudiosAcademicosCDTO == null)
+            {
+                return BadRequest("El objeto de estudiosAcademicosCDTO no puede ser nulo.");
+            }
+
+            // Validar el formato de las fechas sin modificar el objeto original
+            if (!DateTime.TryParse(estudiosAcademicosCDTO.FechaFinalizacion, out _) ||
+                !DateTime.TryParse(estudiosAcademicosCDTO.FechaInicio, out _))
+            {
+                return BadRequest("Formato de fecha incorrecto.");
+            }
+
             return await estudiosAcademicos.Post(estudiosAcademicosCDTO);
+            //return await estudiosAcademicos.Post(estudiosAcademicosCDTO);
         }
     }
 }

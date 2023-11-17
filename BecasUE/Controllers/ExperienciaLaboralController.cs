@@ -1,4 +1,5 @@
-﻿using DataAccess.Entities;
+using DataAccess.Entities;
+using DataAccess.Migrations;
 using Domain;
 using Domain.DTOs;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +31,20 @@ namespace BecasUE.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] ExperienciaLaboralCDTO experienciaLaboralCDTO)
         {
+            if (experienciaLaboralCDTO == null)
+            {
+                return BadRequest("El objeto de experienciaLaboralCDTO no puede ser nulo.");
+            }
+
+            // Validar el formato de las fechas sin modificar el objeto original
+            if (!DateTime.TryParse(experienciaLaboralCDTO.FechaFinalizacion, out _) ||
+                !DateTime.TryParse(experienciaLaboralCDTO.FechaInicio, out _))
+            {
+                return BadRequest("Formato de fecha incorrecto.");
+            }
+
             return await experienciaLaboral.Post(experienciaLaboralCDTO);
+            //return await experienciaLaboral.Post(experienciaLaboralCDTO);
         }
     }
 }

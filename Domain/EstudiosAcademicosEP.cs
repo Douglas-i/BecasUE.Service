@@ -31,7 +31,7 @@ namespace Domain
 
         public async Task<string> Post(EstudiosAcademicosCDTO estudiosAcademicosCDTO)
         {
-            var estudiosAcademicos = mapper.Map<EstudiosAcademicos>(estudiosAcademicosCDTO);
+            var estudiosAcademicos = mapper.Map<EstudiosAcademicos>(estudiosAcademicosCDTO);            
             context.Add(estudiosAcademicos);
             await context.SaveChangesAsync();
             return "Creado Correctamente";

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,10 +10,9 @@ namespace DataAccess.Entities
     public class ExperienciaLaboral
     {
         [Key]
-        public int ExperienciaLaboralID { get; set; }
-
-        [Required] 
-        [StringLength(maximumLength: 100)] 
+        public int EperienciaLaboralID { get; set; }
+        [Required] // Validacion para que este atributo sea requerrido
+        [StringLength(maximumLength: 100)] // Validacion para el tamaño de archivo
         public string Puesto{ get; set; }
 
         [Required]
@@ -26,7 +25,7 @@ namespace DataAccess.Entities
         [Required]
         public DateTime FechaFinalizacion { get; set; }
 
-        [Required]
-        public int CandidatoID { get; set; }     
+        [StringLength(maximumLength: 50)]
+        public string CandidatoID { get; set; }        
     }
 }
