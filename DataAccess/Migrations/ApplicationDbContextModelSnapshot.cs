@@ -84,11 +84,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("FechaFinalizacion")
-                        .HasMaxLength(50)
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaInicio")
-                        .HasMaxLength(1000)
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Puesto")
@@ -97,6 +95,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("EperienciaLaboralID");
+
                     b.ToTable("ExperienciaLaboral");
                 });
 
@@ -109,7 +108,6 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SolicitudAceptadaId"));
 
                     b.Property<DateTime>("FechaAceptacion")
-                        .HasMaxLength(100)
                         .HasColumnType("datetime2");
 
                     b.Property<int>("SolicitudID")
@@ -119,6 +117,24 @@ namespace DataAccess.Migrations
                     b.HasKey("SolicitudAceptadaId");
 
                     b.ToTable("SolicitudesAceptadas");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.TiposEspecialidad", b =>
+                {
+                    b.Property<int>("TipoEspecialidadID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TipoEspecialidadID"));
+
+                    b.Property<string>("NombreTipoEspecialidad")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("TipoEspecialidadID");
+
+                    b.ToTable("TiposEspecialidad");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Universidad", b =>

@@ -12,6 +12,5 @@ namespace Domain.DTOs
         public int SolicitudAceptadaId { get; set; }
         public DateTime FechaAceptacion { get; set; }
         public int SolicitudID { get; set; }              
-        public DateTime FechaAceptacion { get; set; }
     }
 }

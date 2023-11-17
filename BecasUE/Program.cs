@@ -36,6 +36,10 @@ builder.Services.AddTransient<EstudiosAcademicosDTO>();
 builder.Services.AddTransient<EstudiosAcademicosCDTO>();
 builder.Services.AddTransient<EstudiosAcademicosEP>();
 
+builder.Services.AddTransient<TiposEspecialidadDTO>();
+builder.Services.AddTransient<TiposEspecialidadCDTO>();
+builder.Services.AddTransient<TiposEspecialidadEP>();
+
 //Configuraciones para permitir peticiones desde el front
 builder.Services.AddCors(options =>
 {
