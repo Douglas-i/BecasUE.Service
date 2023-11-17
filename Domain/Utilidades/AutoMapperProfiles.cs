@@ -22,6 +22,8 @@ namespace Domain.Utilidades
             CreateMap<EstudiosAcademicos, EstudiosAcademicosDTO>().ReverseMap();
             CreateMap<EstudiosAcademicosCDTO, EstudiosAcademicos>();
 
+            CreateMap<SolicitudesAceptadas, SolicitudesAceptadasDTO>().ReverseMap();
+            CreateMap<SolicitudesAceptadasCDTO, SolicitudesAceptadas>();
         }
     }
 }

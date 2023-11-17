@@ -16,6 +16,11 @@ builder.Services.AddTransient<UniversidadDTO>();
 builder.Services.AddTransient<UniversidadCreacionDTO>();
 builder.Services.AddTransient<UniversidadEndPoints>();
 
+
+builder.Services.AddTransient<SolicitudesAceptadasDTO>();
+builder.Services.AddTransient<SolicitudesAceptadasCDTO>();
+builder.Services.AddTransient<SolicitudesAceptadasEP>();
+
 //Configuraciones para permitir peticiones desde el front
 builder.Services.AddCors(options =>
 {

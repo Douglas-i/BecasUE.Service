@@ -21,6 +21,8 @@ namespace DataAccess
 
         public DbSet<EstudiosAcademicos> EstudiosAcademicos { get; set; }
 
+        public DbSet<SolicitudesAceptadas> SolicitudesAceptadas { get; set; }
+
 
     }
 }
