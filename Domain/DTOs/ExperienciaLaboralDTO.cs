@@ -9,7 +9,7 @@ namespace Domain.DTOs
 {
     public class ExperienciaLaboralDTO
     {       
-        public int EperienciaLaboralID { get; set; }
+        public int ExperienciaLaboralID { get; set; }
 
         public string Puesto { get; set; }
               
@@ -19,6 +19,6 @@ namespace Domain.DTOs
         
         public DateTime FechaFinalizacion { get; set; }
                
-        public int CandidatoID { get; set; }
+        public int PersonaID { get; set; }
     }
 }

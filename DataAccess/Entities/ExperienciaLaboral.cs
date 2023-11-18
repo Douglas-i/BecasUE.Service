@@ -10,22 +10,18 @@ namespace DataAccess.Entities
     public class ExperienciaLaboral
     {
         [Key]
-        public int EperienciaLaboralID { get; set; }
+        public int ExperienciaLaboralID { get; set; }
         [Required] // Validacion para que este atributo sea requerrido
         [StringLength(maximumLength: 100)] // Validacion para el tamaño de archivo
-        public string Puesto{ get; set; }
-
+        public string Puesto { get; set; }
         [Required]
-        [StringLength(maximumLength: 100)]
-        public string EntidadTrabajo{ get; set; }
-
+        [StringLength(maximumLength: 1000)]
+        public string EntidadTrabajo { get; set; }
         [Required]
         public DateTime FechaInicio { get; set; }
-
         [Required]
         public DateTime FechaFinalizacion { get; set; }
-
-        [StringLength(maximumLength: 50)]
-        public string CandidatoID { get; set; }        
+        [Required]
+        public int PersonaID { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class ExperienciaLaboral : Migration
+    public partial class ExperienciaL_EstudiosA_Solicitud : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,32 +15,34 @@ namespace DataAccess.Migrations
                 name: "EstudiosAcademicos",
                 columns: table => new
                 {
-                    EntidadEmisora = table.Column<int>(type: "int", nullable: false)
+                    EstudiosAcademicosID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FechaFinalizacion = table.Column<DateTime>(type: "datetime2", maxLength: 100, nullable: false),
-                    FechaInicio = table.Column<DateTime>(type: "datetime2", maxLength: 100, nullable: false),
-                    TituloObtenido = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
+                    TituloObtenido = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    EntidadEmisora = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaFinalizacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PersonaID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EstudiosAcademicos", x => x.EntidadEmisora);
+                    table.PrimaryKey("PK_EstudiosAcademicos", x => x.EstudiosAcademicosID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ExperienciaLaboral",
                 columns: table => new
                 {
-                    EperienciaLaboralID = table.Column<int>(type: "int", nullable: false)
+                    ExperienciaLaboralID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Puesto = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    EntidadTrabajo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    FechaInicio = table.Column<DateTime>(type: "datetime2", maxLength: 1000, nullable: false),
-                    FechaFinalizacion = table.Column<DateTime>(type: "datetime2", maxLength: 50, nullable: false),
-                    CandidatoID = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    EntidadTrabajo = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaFinalizacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PersonaID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExperienciaLaboral", x => x.EperienciaLaboralID);
+                    table.PrimaryKey("PK_ExperienciaLaboral", x => x.ExperienciaLaboralID);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,7 +51,7 @@ namespace DataAccess.Migrations
                 {
                     SolicitudAceptadaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FechaAceptacion = table.Column<DateTime>(type: "datetime2", maxLength: 100, nullable: false),
+                    FechaAceptacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SolicitudID = table.Column<int>(type: "int", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
