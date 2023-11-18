@@ -12,6 +12,22 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
 
+builder.Services.AddTransient<RolDTO>();
+builder.Services.AddTransient<RolCDTO>();
+builder.Services.AddTransient<RolEP>();
+
+builder.Services.AddTransient<UsuarioDTO>();
+builder.Services.AddTransient<UsuarioCDTO>();
+builder.Services.AddTransient<UsuarioEP>();
+
+builder.Services.AddTransient<PersonaDTO>();
+builder.Services.AddTransient<PersonaCDTO>();
+builder.Services.AddTransient<PersonaEP>();
+
+builder.Services.AddTransient<OfertaAnualDTO>();
+builder.Services.AddTransient<OfertaAnualCDTO>();
+builder.Services.AddTransient<OfertaAnualEP>();
+
 builder.Services.AddTransient<UniversidadDTO>();
 builder.Services.AddTransient<UniversidadCreacionDTO>();
 builder.Services.AddTransient<UniversidadEndPoints>();

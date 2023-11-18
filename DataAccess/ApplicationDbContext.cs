@@ -14,7 +14,13 @@ namespace DataAccess
         {
         }
 
-        public DbSet<Candidato> Candidato { get; set; } //Para la creacion de la tabla
+        public DbSet<Rol> Rol { get; set; }
+
+        public DbSet<Usuario> Usuario { get; set; }
+
+        public DbSet<OfertaAnual> OfertaAnual { get; set; }
+
+        public DbSet<Persona> Persona { get; set; } //Para la creacion de la tabla
 
         public DbSet<Universidad> Universidad { get; set; }
 
