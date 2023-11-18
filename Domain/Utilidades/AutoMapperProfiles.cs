@@ -13,6 +13,18 @@ namespace Domain.Utilidades
     {
         public AutoMapperProfiles()
         {
+            CreateMap<Rol, RolDTO>().ReverseMap();
+            CreateMap<RolCDTO, Rol>();
+
+            CreateMap<Usuario, UsuarioDTO>().ReverseMap();
+            CreateMap<UsuarioCDTO, Usuario>();
+
+            CreateMap<Persona, PersonaDTO>().ReverseMap();
+            CreateMap<PersonaCDTO, Persona>();
+
+            CreateMap<OfertaAnual, OfertaAnualDTO>().ReverseMap();
+            CreateMap<OfertaAnualCDTO, OfertaAnual>();
+
             CreateMap<Universidad, UniversidadDTO>().ReverseMap();
             CreateMap<UniversidadCreacionDTO, Universidad>();
 
