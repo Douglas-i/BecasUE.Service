@@ -99,6 +99,40 @@ namespace DataAccess.Migrations
                     b.ToTable("ExperienciaLaboral");
                 });
 
+            modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
+                {
+                    b.Property<int>("ProgramaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProgramaId"));
+
+                    b.Property<int>("CantidadCredito")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Duracion")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("EspecialidadId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumeroDiplomados")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TituloPrograma")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("ProgramaId");
+
+                    b.HasIndex("EspecialidadId");
+
+                    b.ToTable("ProgramasTitulacion");
+                });
+
             modelBuilder.Entity("DataAccess.Entities.SolicitudesAceptadas", b =>
                 {
                     b.Property<int>("SolicitudAceptadaId")
@@ -173,6 +207,22 @@ namespace DataAccess.Migrations
                     b.HasKey("universidadId");
 
                     b.ToTable("Universidad");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
+                {
+                    b.HasOne("DataAccess.Entities.TiposEspecialidad", "Especialidad")
+                        .WithMany("ProgramasTitulaciones")
+                        .HasForeignKey("EspecialidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Especialidad");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.TiposEspecialidad", b =>
+                {
+                    b.Navigation("ProgramasTitulaciones");
                 });
 #pragma warning restore 612, 618
         }
