@@ -14,8 +14,19 @@ namespace Domain.Utilidades
         public AutoMapperProfiles()
         {
             CreateMap<Universidad, UniversidadDTO>().ReverseMap();
-            CreateMap<UniversidadCreacionDTO, Universidad>();            
+            CreateMap<UniversidadCreacionDTO, Universidad>();
 
+            CreateMap<ExperienciaLaboral, ExperienciaLaboralDTO>().ReverseMap();
+            CreateMap<ExperienciaLaboralCDTO, ExperienciaLaboral>();
+
+            CreateMap<EstudiosAcademicos, EstudiosAcademicosDTO>().ReverseMap();
+            CreateMap<EstudiosAcademicosCDTO, EstudiosAcademicos>();
+
+            CreateMap<SolicitudesAceptadas, SolicitudesAceptadasDTO>().ReverseMap();
+            CreateMap<SolicitudesAceptadasCDTO, SolicitudesAceptadas>();
+
+            CreateMap<TiposEspecialidad, TiposEspecialidadDTO>().ReverseMap();
+            CreateMap<TiposEspecialidadCDTO, TiposEspecialidad>();
         }
     }
 }
