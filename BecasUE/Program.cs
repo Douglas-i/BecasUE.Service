@@ -1,6 +1,7 @@
 using DataAccess;
 using Domain;
 using Domain.DTOs;
+using Domain.DTOs.Relaciones;
 using Domain.Utilidades;
 using Microsoft.EntityFrameworkCore;
 
@@ -55,6 +56,9 @@ builder.Services.AddTransient<EstudiosAcademicosEP>();
 builder.Services.AddTransient<TiposEspecialidadDTO>();
 builder.Services.AddTransient<TiposEspecialidadCDTO>();
 builder.Services.AddTransient<TiposEspecialidadEP>();
+
+builder.Services.AddTransient<ProgramasTitulacionEP>();
+builder.Services.AddTransient<ProgramasTitulacionDTO>();
 
 //Configuraciones para permitir peticiones desde el front
 builder.Services.AddCors(options =>
