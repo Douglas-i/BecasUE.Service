@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231118034612_ProgramasTitulacion")]
-    partial class ProgramasTitulacion
+    [Migration("20231119060129_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,66 +25,50 @@ namespace DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DataAccess.Entities.Candidato", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<string>("nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Candidato");
-                });
-
             modelBuilder.Entity("DataAccess.Entities.EstudiosAcademicos", b =>
                 {
-                    b.Property<int>("EntidadEmisora")
+                    b.Property<int>("EstudiosAcademicosID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntidadEmisora"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EstudiosAcademicosID"));
+
+                    b.Property<string>("EntidadEmisora")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("FechaFinalizacion")
-                        .HasMaxLength(100)
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaInicio")
-                        .HasMaxLength(100)
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("PersonaID")
+                        .HasColumnType("int");
 
                     b.Property<string>("TituloObtenido")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.HasKey("EntidadEmisora");
+                    b.HasKey("EstudiosAcademicosID");
 
                     b.ToTable("EstudiosAcademicos");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.ExperienciaLaboral", b =>
                 {
-                    b.Property<int>("EperienciaLaboralID")
+                    b.Property<int>("ExperienciaLaboralID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EperienciaLaboralID"));
-
-                    b.Property<string>("CandidatoID")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExperienciaLaboralID"));
 
                     b.Property<string>("EntidadTrabajo")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("FechaFinalizacion")
                         .HasColumnType("datetime2");
@@ -92,14 +76,95 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("FechaInicio")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("PersonaID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Puesto")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("EperienciaLaboralID");
+                    b.HasKey("ExperienciaLaboralID");
 
                     b.ToTable("ExperienciaLaboral");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.OfertaAnual", b =>
+                {
+                    b.Property<int>("OfertaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OfertaID"));
+
+                    b.Property<int>("Año")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("FechaApertura")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaCierre")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("NumeroUniversidades")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaisSedePrograma")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("OfertaID");
+
+                    b.ToTable("OfertaAnual");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Persona", b =>
+                {
+                    b.Property<int>("PersonaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonaID"));
+
+                    b.Property<string>("ApellidoPersona")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CorreoElectronico")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("NombrePersona")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Pasaporte")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaísPrecedencia")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("UsuarioID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonaID");
+
+                    b.ToTable("Persona");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
@@ -134,6 +199,24 @@ namespace DataAccess.Migrations
                     b.HasIndex("EspecialidadId");
 
                     b.ToTable("ProgramasTitulacion");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Rol", b =>
+                {
+                    b.Property<int>("RolID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolID"));
+
+                    b.Property<string>("NombreRol")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("RolID");
+
+                    b.ToTable("Rol");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.SolicitudesAceptadas", b =>
@@ -210,6 +293,38 @@ namespace DataAccess.Migrations
                     b.HasKey("universidadId");
 
                     b.ToTable("Universidad");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Usuario", b =>
+                {
+                    b.Property<int>("UsuarioID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioID"));
+
+                    b.Property<string>("Contraseña")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("FechaCreación")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("RolID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UltimaModificación")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("UsuarioID");
+
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
