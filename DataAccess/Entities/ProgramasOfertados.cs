@@ -24,7 +24,7 @@ namespace DataAccess.Entities
         public OfertaAnual Oferta { get; set; } //Propiedad de Navegacion
         public int UniversidadId { get; set; } //Clave Foranea
         public Universidad Universidad { get; set; } // Propiedad de Navegacion
-        public SolicitudesProgramas SolicitudesProgramas { get; set; }
+        public List<SolicitudesProgramas> SolicitudesProgramas { get; set; }
 
     }
 }

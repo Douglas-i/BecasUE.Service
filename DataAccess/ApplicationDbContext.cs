@@ -22,7 +22,7 @@ namespace DataAccess
                 .WithOne(p => p.Especialidad)
                 .HasForeignKey(p => p.EspecialidadId);
 
-            // Relacion ProgramasOfertaso => ProgramasTitulacion, OfertaAnual
+            // Relacion ProgramasOfertados => ProgramasTitulacion, OfertaAnual, Universidad
             modelBuilder.Entity<ProgramasTitulacion>()
                 .HasMany(p => p.ProgramasOfertados)
                 .WithOne(po => po.Programas)
@@ -33,16 +33,16 @@ namespace DataAccess
                 .WithOne(po => po.Oferta)
                 .HasForeignKey(po => po.OfertaId);
 
-            modelBuilder.Entity<ProgramasOfertados>()
-           .HasOne(po => po.Universidad)
-           .WithOne(u => u.ProgramasOfertados)
-           .HasForeignKey<ProgramasOfertados>(po => po.UniversidadId);
+            modelBuilder.Entity<Universidad>()
+               .HasMany(u => u.ProgramasOfertados)
+               .WithOne(po => po.Universidad)
+               .HasForeignKey(po => po.UniversidadId);
 
             //Relacion Persona => EstudiosAcademicos, ExperienciaLaboral, Usuario
             modelBuilder.Entity<EstudiosAcademicos>()
-           .HasOne(ea => ea.Persona)
-           .WithMany(p => p.EstudiosAcademicos)
-           .HasForeignKey(ea => ea.PersonaID);
+               .HasOne(ea => ea.Persona)
+               .WithMany(p => p.EstudiosAcademicos)
+               .HasForeignKey(ea => ea.PersonaID);
 
             modelBuilder.Entity<ExperienciaLaboral>()
                 .HasOne(el => el.Persona)
@@ -51,24 +51,25 @@ namespace DataAccess
 
             modelBuilder.Entity<Usuario>()
                  .HasOne(u => u.Persona)
-                 .WithOne(p => p.Usuario)
-                 .HasForeignKey<Usuario>(u => u.PersonaId);
+                 .WithMany(p => p.Usuario)
+                 .HasForeignKey(u => u.PersonaId);
 
             //Relaciones SolicitudesProgramas => ProgramasOfertados, Persona
-            modelBuilder.Entity<SolicitudesProgramas>()
-                .HasOne(sp => sp.ProgramasOfertados)
-                .WithOne(po => po.SolicitudesProgramas)
-                .HasForeignKey<SolicitudesProgramas>(sp => sp.ProgramaOfertadoId);
+            modelBuilder.Entity<ProgramasOfertados>()
+                .HasMany(po => po.SolicitudesProgramas)
+                .WithOne(sp => sp.ProgramasOfertados)
+                .HasForeignKey(sp => sp.ProgramaOfertadoId);
             
-            modelBuilder.Entity<SolicitudesProgramas>()
-                .HasOne(sp => sp.Persona)
-                .WithOne(p => p.SolicitudesProgramas)
-                .HasForeignKey<SolicitudesProgramas>(sp => sp.PersonaId);
+            modelBuilder.Entity<Persona>()
+                .HasMany(p =>p.SolicitudesProgramas)
+                .WithOne(sp => sp.Persona)
+                .HasForeignKey(sp => sp.PersonaId);
 
-            modelBuilder.Entity<SolicitudesAceptadas>()
-                .HasOne(sa => sa.SolicitudesProgramas)
-                .WithOne(sp => sp.SolicitudesAceptadas)
-                .HasForeignKey<SolicitudesAceptadas>(sa => sa.SolicitudID);
+            //Relacion SolicitudesAceptada => SolicitudesProgramas
+            modelBuilder.Entity<SolicitudesProgramas>()
+                .HasMany(sp => sp.SolicitudesAceptadas)
+                .WithOne(sa => sa.SolicitudesProgramas)
+                .HasForeignKey(sp => sp.SolicitudID);
 
             base.OnModelCreating(modelBuilder);
         }
