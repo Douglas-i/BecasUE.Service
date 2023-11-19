@@ -164,24 +164,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Persona");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Rol", b =>
-                {
-                    b.Property<int>("RolID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolID"));
-
-                    b.Property<string>("NombreRol")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("RolID");
-
-                    b.ToTable("Rol");
-                });
-
             modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
                 {
                     b.Property<int>("ProgramaId")
@@ -214,6 +196,24 @@ namespace DataAccess.Migrations
                     b.HasIndex("EspecialidadId");
 
                     b.ToTable("ProgramasTitulacion");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Rol", b =>
+                {
+                    b.Property<int>("RolID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolID"));
+
+                    b.Property<string>("NombreRol")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("RolID");
+
+                    b.ToTable("Rol");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.SolicitudesAceptadas", b =>
@@ -322,6 +322,22 @@ namespace DataAccess.Migrations
                     b.HasKey("UsuarioID");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
+                {
+                    b.HasOne("DataAccess.Entities.TiposEspecialidad", "Especialidad")
+                        .WithMany("ProgramasTitulaciones")
+                        .HasForeignKey("EspecialidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Especialidad");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.TiposEspecialidad", b =>
+                {
+                    b.Navigation("ProgramasTitulaciones");
                 });
 #pragma warning restore 612, 618
         }
