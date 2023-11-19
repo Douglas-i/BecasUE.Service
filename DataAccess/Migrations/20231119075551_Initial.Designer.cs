@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231119060129_Initial")]
+    [Migration("20231119075551_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -54,6 +54,8 @@ namespace DataAccess.Migrations
 
                     b.HasKey("EstudiosAcademicosID");
 
+                    b.HasIndex("PersonaID");
+
                     b.ToTable("EstudiosAcademicos");
                 });
 
@@ -85,6 +87,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ExperienciaLaboralID");
+
+                    b.HasIndex("PersonaID");
 
                     b.ToTable("ExperienciaLaboral");
                 });
@@ -159,12 +163,50 @@ namespace DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("UsuarioID")
-                        .HasColumnType("int");
-
                     b.HasKey("PersonaID");
 
                     b.ToTable("Persona");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.ProgramasOfertados", b =>
+                {
+                    b.Property<int>("ProgramaOfertadoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProgramaOfertadoId"));
+
+                    b.Property<DateTime>("FechaFinalazacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Financiamiento")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("MontoAprobado")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("OfertaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProgramaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UniversidadId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProgramaOfertadoId");
+
+                    b.HasIndex("OfertaId");
+
+                    b.HasIndex("ProgramaId");
+
+                    b.HasIndex("UniversidadId")
+                        .IsUnique();
+
+                    b.ToTable("ProgramasOfertados");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
@@ -236,7 +278,46 @@ namespace DataAccess.Migrations
 
                     b.HasKey("SolicitudAceptadaId");
 
+                    b.HasIndex("SolicitudID")
+                        .IsUnique();
+
                     b.ToTable("SolicitudesAceptadas");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.SolicitudesProgramas", b =>
+                {
+                    b.Property<int>("SolicitudId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SolicitudId"));
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaSolicitud")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PersonaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProgramaOfertadoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Resumen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SolicitudId");
+
+                    b.HasIndex("PersonaId")
+                        .IsUnique();
+
+                    b.HasIndex("ProgramaOfertadoId")
+                        .IsUnique();
+
+                    b.ToTable("SolicitudesProgramas");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.TiposEspecialidad", b =>
@@ -316,6 +397,9 @@ namespace DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("PersonaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RolID")
                         .HasColumnType("int");
 
@@ -324,7 +408,59 @@ namespace DataAccess.Migrations
 
                     b.HasKey("UsuarioID");
 
+                    b.HasIndex("PersonaId")
+                        .IsUnique();
+
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.EstudiosAcademicos", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Persona", "Persona")
+                        .WithMany("EstudiosAcademicos")
+                        .HasForeignKey("PersonaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Persona");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.ExperienciaLaboral", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Persona", "Persona")
+                        .WithMany("ExperienciaLaborals")
+                        .HasForeignKey("PersonaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Persona");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.ProgramasOfertados", b =>
+                {
+                    b.HasOne("DataAccess.Entities.OfertaAnual", "Oferta")
+                        .WithMany("ProgramasOfertados")
+                        .HasForeignKey("OfertaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Entities.ProgramasTitulacion", "Programas")
+                        .WithMany("ProgramasOfertados")
+                        .HasForeignKey("ProgramaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Entities.Universidad", "Universidad")
+                        .WithOne("ProgramasOfertados")
+                        .HasForeignKey("DataAccess.Entities.ProgramasOfertados", "UniversidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Oferta");
+
+                    b.Navigation("Programas");
+
+                    b.Navigation("Universidad");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
@@ -338,9 +474,91 @@ namespace DataAccess.Migrations
                     b.Navigation("Especialidad");
                 });
 
+            modelBuilder.Entity("DataAccess.Entities.SolicitudesAceptadas", b =>
+                {
+                    b.HasOne("DataAccess.Entities.SolicitudesProgramas", "SolicitudesProgramas")
+                        .WithOne("SolicitudesAceptadas")
+                        .HasForeignKey("DataAccess.Entities.SolicitudesAceptadas", "SolicitudID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SolicitudesProgramas");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.SolicitudesProgramas", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Persona", "Persona")
+                        .WithOne("SolicitudesProgramas")
+                        .HasForeignKey("DataAccess.Entities.SolicitudesProgramas", "PersonaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Entities.ProgramasOfertados", "ProgramasOfertados")
+                        .WithOne("SolicitudesProgramas")
+                        .HasForeignKey("DataAccess.Entities.SolicitudesProgramas", "ProgramaOfertadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Persona");
+
+                    b.Navigation("ProgramasOfertados");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Usuario", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Persona", "Persona")
+                        .WithOne("Usuario")
+                        .HasForeignKey("DataAccess.Entities.Usuario", "PersonaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Persona");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.OfertaAnual", b =>
+                {
+                    b.Navigation("ProgramasOfertados");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Persona", b =>
+                {
+                    b.Navigation("EstudiosAcademicos");
+
+                    b.Navigation("ExperienciaLaborals");
+
+                    b.Navigation("SolicitudesProgramas")
+                        .IsRequired();
+
+                    b.Navigation("Usuario")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.ProgramasOfertados", b =>
+                {
+                    b.Navigation("SolicitudesProgramas")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
+                {
+                    b.Navigation("ProgramasOfertados");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.SolicitudesProgramas", b =>
+                {
+                    b.Navigation("SolicitudesAceptadas")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DataAccess.Entities.TiposEspecialidad", b =>
                 {
                     b.Navigation("ProgramasTitulaciones");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Universidad", b =>
+                {
+                    b.Navigation("ProgramasOfertados")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
