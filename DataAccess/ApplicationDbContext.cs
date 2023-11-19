@@ -15,10 +15,13 @@ namespace DataAccess
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            //modelBuilder.Entity<ProgramasTitulacion_Especialidad>()
-            //    .HasKey(x => new { x.ProgramaId, x.EspecialidadId });            
+        public DbSet<Rol> Rol { get; set; }
+
+        public DbSet<Usuario> Usuario { get; set; }
+
+        public DbSet<OfertaAnual> OfertaAnual { get; set; }
+
+        public DbSet<Persona> Persona { get; set; } //Para la creacion de la tabla
 
             // Configuración de la relación uno a muchos
             modelBuilder.Entity<TiposEspecialidad>()

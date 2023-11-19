@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231118211839_ExperienciaL_EstudiosA_Solicitud")]
+    partial class ExperienciaL_EstudiosA_Solicitud
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,40 +183,6 @@ namespace DataAccess.Migrations
                     b.HasKey("RolID");
 
                     b.ToTable("Rol");
-                });
-
-            modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
-                {
-                    b.Property<int>("ProgramaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProgramaId"));
-
-                    b.Property<int>("CantidadCredito")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Duracion")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("EspecialidadId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumeroDiplomados")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TituloPrograma")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("ProgramaId");
-
-                    b.HasIndex("EspecialidadId");
-
-                    b.ToTable("ProgramasTitulacion");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.SolicitudesAceptadas", b =>

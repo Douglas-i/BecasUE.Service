@@ -13,13 +13,13 @@ namespace Domain.DTOs
         [StringLength(maximumLength: 100)] 
         public string Puesto { get; set; }
         [Required]
-        [StringLength(maximumLength: 100)]
+        [StringLength(maximumLength: 1000)]
         public string EntidadTrabajo { get; set; }
         [StringLength(maximumLength: 1000)]
         public string FechaInicio { get; set; }
         [StringLength(maximumLength: 50)]
         public string FechaFinalizacion { get; set; }
         [StringLength(maximumLength: 50)]
-        public string CandidatoID { get; set; }        
+        public string PersonaID { get; set; }        
     }
 }
