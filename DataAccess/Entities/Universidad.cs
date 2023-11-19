@@ -22,5 +22,8 @@ namespace DataAccess.Entities
         public string direccion { get; set; }
         [StringLength(maximumLength: 8)]
         public string telefono { get; set; }
+
+        //Relacion 1 a muchos
+        public ProgramasOfertados ProgramasOfertados { get; set; }
     }
 }

@@ -22,6 +22,9 @@ namespace DataAccess.Entities
         [Required]
         public DateTime FechaFinalizacion { get; set; }
         [Required]
+
+        //Relaciones
         public int PersonaID { get; set; }
+        public Persona Persona { get; set; }
     }
 }

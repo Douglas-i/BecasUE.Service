@@ -28,5 +28,11 @@ namespace DataAccess.Entities
 
         [Required]
         public int RolID { get; set; }
+
+        //--------------------------------------------Relaciones-----------------------------------//
+
+        // Relación uno a uno con Persona
+        public int PersonaId { get; set; }
+        public Persona Persona { get; set; }
     }
 }
