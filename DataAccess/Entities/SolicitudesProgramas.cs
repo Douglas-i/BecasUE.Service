@@ -20,6 +20,6 @@ namespace DataAccess.Entities
         public Persona Persona { get; set; }
         public int ProgramaOfertadoId { get; set; }
         public ProgramasOfertados ProgramasOfertados { get; set; }
-        public SolicitudesAceptadas SolicitudesAceptadas { get; set; }
+        public List<SolicitudesAceptadas> SolicitudesAceptadas { get; set; }
     }
 }

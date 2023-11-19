@@ -27,13 +27,11 @@ namespace DataAccess.Entities
 
         //--------------------------------------------Relaciones-----------------------------------//
 
-        public Usuario Usuario { get; set; }
+        public List<Usuario> Usuario { get; set; }
 
         // Relación uno a muchos con ProgramasTitulacion
         public List<ExperienciaLaboral> ExperienciaLaborals { get; set; }
-        public List<EstudiosAcademicos> EstudiosAcademicos { get; set; }
-
-        //Relacion uno a uno con Solicitudes Programadas
-        public SolicitudesProgramas SolicitudesProgramas { get; set; }        
+        public List<EstudiosAcademicos> EstudiosAcademicos { get; set; }       
+        public List<SolicitudesProgramas> SolicitudesProgramas { get; set; }              
     }
 }

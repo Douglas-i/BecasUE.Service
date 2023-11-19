@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231119075551_Initial")]
+    [Migration("20231119235402_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -203,8 +203,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("ProgramaId");
 
-                    b.HasIndex("UniversidadId")
-                        .IsUnique();
+                    b.HasIndex("UniversidadId");
 
                     b.ToTable("ProgramasOfertados");
                 });
@@ -278,8 +277,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("SolicitudAceptadaId");
 
-                    b.HasIndex("SolicitudID")
-                        .IsUnique();
+                    b.HasIndex("SolicitudID");
 
                     b.ToTable("SolicitudesAceptadas");
                 });
@@ -311,11 +309,9 @@ namespace DataAccess.Migrations
 
                     b.HasKey("SolicitudId");
 
-                    b.HasIndex("PersonaId")
-                        .IsUnique();
+                    b.HasIndex("PersonaId");
 
-                    b.HasIndex("ProgramaOfertadoId")
-                        .IsUnique();
+                    b.HasIndex("ProgramaOfertadoId");
 
                     b.ToTable("SolicitudesProgramas");
                 });
@@ -408,8 +404,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("UsuarioID");
 
-                    b.HasIndex("PersonaId")
-                        .IsUnique();
+                    b.HasIndex("PersonaId");
 
                     b.ToTable("Usuario");
                 });
@@ -451,8 +446,8 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("DataAccess.Entities.Universidad", "Universidad")
-                        .WithOne("ProgramasOfertados")
-                        .HasForeignKey("DataAccess.Entities.ProgramasOfertados", "UniversidadId")
+                        .WithMany("ProgramasOfertados")
+                        .HasForeignKey("UniversidadId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -477,8 +472,8 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Entities.SolicitudesAceptadas", b =>
                 {
                     b.HasOne("DataAccess.Entities.SolicitudesProgramas", "SolicitudesProgramas")
-                        .WithOne("SolicitudesAceptadas")
-                        .HasForeignKey("DataAccess.Entities.SolicitudesAceptadas", "SolicitudID")
+                        .WithMany("SolicitudesAceptadas")
+                        .HasForeignKey("SolicitudID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -488,14 +483,14 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Entities.SolicitudesProgramas", b =>
                 {
                     b.HasOne("DataAccess.Entities.Persona", "Persona")
-                        .WithOne("SolicitudesProgramas")
-                        .HasForeignKey("DataAccess.Entities.SolicitudesProgramas", "PersonaId")
+                        .WithMany("SolicitudesProgramas")
+                        .HasForeignKey("PersonaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DataAccess.Entities.ProgramasOfertados", "ProgramasOfertados")
-                        .WithOne("SolicitudesProgramas")
-                        .HasForeignKey("DataAccess.Entities.SolicitudesProgramas", "ProgramaOfertadoId")
+                        .WithMany("SolicitudesProgramas")
+                        .HasForeignKey("ProgramaOfertadoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -507,8 +502,8 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Entities.Usuario", b =>
                 {
                     b.HasOne("DataAccess.Entities.Persona", "Persona")
-                        .WithOne("Usuario")
-                        .HasForeignKey("DataAccess.Entities.Usuario", "PersonaId")
+                        .WithMany("Usuario")
+                        .HasForeignKey("PersonaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -526,17 +521,14 @@ namespace DataAccess.Migrations
 
                     b.Navigation("ExperienciaLaborals");
 
-                    b.Navigation("SolicitudesProgramas")
-                        .IsRequired();
+                    b.Navigation("SolicitudesProgramas");
 
-                    b.Navigation("Usuario")
-                        .IsRequired();
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.ProgramasOfertados", b =>
                 {
-                    b.Navigation("SolicitudesProgramas")
-                        .IsRequired();
+                    b.Navigation("SolicitudesProgramas");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
@@ -546,8 +538,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.SolicitudesProgramas", b =>
                 {
-                    b.Navigation("SolicitudesAceptadas")
-                        .IsRequired();
+                    b.Navigation("SolicitudesAceptadas");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.TiposEspecialidad", b =>
@@ -557,8 +548,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Universidad", b =>
                 {
-                    b.Navigation("ProgramasOfertados")
-                        .IsRequired();
+                    b.Navigation("ProgramasOfertados");
                 });
 #pragma warning restore 612, 618
         }

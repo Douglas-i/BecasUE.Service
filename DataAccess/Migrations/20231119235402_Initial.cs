@@ -292,8 +292,7 @@ namespace DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProgramasOfertados_UniversidadId",
                 table: "ProgramasOfertados",
-                column: "UniversidadId",
-                unique: true);
+                column: "UniversidadId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProgramasTitulacion_EspecialidadId",
@@ -303,26 +302,22 @@ namespace DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_SolicitudesAceptadas_SolicitudID",
                 table: "SolicitudesAceptadas",
-                column: "SolicitudID",
-                unique: true);
+                column: "SolicitudID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SolicitudesProgramas_PersonaId",
                 table: "SolicitudesProgramas",
-                column: "PersonaId",
-                unique: true);
+                column: "PersonaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SolicitudesProgramas_ProgramaOfertadoId",
                 table: "SolicitudesProgramas",
-                column: "ProgramaOfertadoId",
-                unique: true);
+                column: "ProgramaOfertadoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuario_PersonaId",
                 table: "Usuario",
-                column: "PersonaId",
-                unique: true);
+                column: "PersonaId");
         }
 
         /// <inheritdoc />

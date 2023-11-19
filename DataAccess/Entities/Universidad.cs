@@ -24,6 +24,6 @@ namespace DataAccess.Entities
         public string telefono { get; set; }
 
         //Relacion 1 a muchos
-        public ProgramasOfertados ProgramasOfertados { get; set; }
+        public List<ProgramasOfertados> ProgramasOfertados { get; set; }
     }
 }
