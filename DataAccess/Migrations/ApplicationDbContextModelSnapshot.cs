@@ -182,6 +182,40 @@ namespace DataAccess.Migrations
                     b.ToTable("Rol");
                 });
 
+            modelBuilder.Entity("DataAccess.Entities.ProgramasTitulacion", b =>
+                {
+                    b.Property<int>("ProgramaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProgramaId"));
+
+                    b.Property<int>("CantidadCredito")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Duracion")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("EspecialidadId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumeroDiplomados")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TituloPrograma")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("ProgramaId");
+
+                    b.HasIndex("EspecialidadId");
+
+                    b.ToTable("ProgramasTitulacion");
+                });
+
             modelBuilder.Entity("DataAccess.Entities.SolicitudesAceptadas", b =>
                 {
                     b.Property<int>("SolicitudAceptadaId")

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess.Entities.Relaciones;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace DataAccess.Entities
         [Required]
         [StringLength(maximumLength: 100)]
         public string NombreTipoEspecialidad { get; set; }
+
+        // Relación uno a muchos con ProgramasTitulacion
+        public List<ProgramasTitulacion> ProgramasTitulaciones { get; set; }
     }
 
 }
