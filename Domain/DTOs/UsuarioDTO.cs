@@ -20,5 +20,6 @@ namespace Domain.DTOs
         public DateTime UltimaModificación { get; set; }
 
         public int RolID { get; set; }
+        public int PersonaId { get; set; }
     }
 }

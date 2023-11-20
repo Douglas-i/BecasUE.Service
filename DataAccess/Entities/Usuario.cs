@@ -31,7 +31,7 @@ namespace DataAccess.Entities
 
         //--------------------------------------------Relaciones-----------------------------------//
 
-        // Relación uno a uno con Persona
+        // Relación uno a uno con Persona        
         public int PersonaId { get; set; }
         public Persona Persona { get; set; }
     }

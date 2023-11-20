@@ -401,7 +401,8 @@ namespace DataAccess.Migrations
 
                     b.HasKey("UsuarioID");
 
-                    b.HasIndex("PersonaId");
+                    b.HasIndex("PersonaId")
+                        .IsUnique();
 
                     b.ToTable("Usuario");
                 });
