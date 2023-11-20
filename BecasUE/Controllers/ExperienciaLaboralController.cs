@@ -28,6 +28,12 @@ namespace BecasUE.Controllers
             return await experienciaLaboral.Get();
         }
 
+        [HttpGet("{Id:int}")]
+        public async Task<ActionResult<ExperienciaLaboralDTO>> Get_Id(int Id)
+        {
+            return await experienciaLaboral.Get_Id(Id);
+        }
+
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] ExperienciaLaboralCDTO experienciaLaboralCDTO)
         {
@@ -45,6 +51,12 @@ namespace BecasUE.Controllers
 
             return await experienciaLaboral.Post(experienciaLaboralCDTO);
             //return await experienciaLaboral.Post(experienciaLaboralCDTO);
+        }
+
+        [HttpPut("{Id:int}")]
+        public async Task<ActionResult<string>> Put(int Id, [FromBody] ExperienciaLaboralCDTO experienciaLaboralCDTO)
+        {
+            return await experienciaLaboral.Put(Id, experienciaLaboralCDTO);
         }
     }
 }

@@ -29,12 +29,26 @@ namespace Domain
             return mapper.Map<List<EstudiosAcademicosDTO>>(EstudiosAcademicos);
         }
 
+        public async Task<EstudiosAcademicosDTO> Get_Id(int Id)
+        {
+            var estudiosAcademicos = await context.EstudiosAcademicos.FirstOrDefaultAsync(x => x.EstudiosAcademicosID == Id);
+            return mapper.Map<EstudiosAcademicosDTO>(estudiosAcademicos);
+        }
+
         public async Task<string> Post(EstudiosAcademicosCDTO estudiosAcademicosCDTO)
         {
             var estudiosAcademicos = mapper.Map<EstudiosAcademicos>(estudiosAcademicosCDTO);            
             context.Add(estudiosAcademicos);
             await context.SaveChangesAsync();
             return "Creado Correctamente";
+        }
+
+        public async Task<string> Put(int Id, EstudiosAcademicosCDTO estudiosAcademicosCDTO)
+        {
+            var estudiosAcademicos = await context.EstudiosAcademicos.FirstOrDefaultAsync(x => x.EstudiosAcademicosID == Id);
+            estudiosAcademicos = mapper.Map(estudiosAcademicosCDTO, estudiosAcademicos);
+            await context.SaveChangesAsync();
+            return "Editado Correctamente";
         }
     }
 }

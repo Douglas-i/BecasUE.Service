@@ -1,6 +1,7 @@
 ﻿using Domain.DTOs;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using DataAccess.Entities;
 
 namespace BecasUE.Controllers
 {
@@ -24,10 +25,22 @@ namespace BecasUE.Controllers
             return await usuario.Get();
         }
 
+        [HttpGet("{Id:int}")]
+        public async Task<ActionResult<UsuarioDTO>> Get_Id(int Id)
+        {
+            return await usuario.Get_Id(Id);
+        }
+
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] UsuarioCDTO usuarioCDTO)
         {
             return await usuario.Post(usuarioCDTO);
+        }
+
+        [HttpPut("{Id:int}")]
+        public async Task<ActionResult<string>> Put(int Id, [FromBody] UsuarioCDTO usuarioCDTO)
+        {
+            return await usuario.Put(Id, usuarioCDTO);
         }
     }
 }

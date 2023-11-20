@@ -29,12 +29,26 @@ namespace Domain
             return mapper.Map<List<ExperienciaLaboralDTO>>(experiencialaboral);
         }
 
+        public async Task<ExperienciaLaboralDTO> Get_Id(int Id)
+        {
+            var experiencialaboral = await context.ExperienciaLaboral.FirstOrDefaultAsync(x => x.ExperienciaLaboralID == Id);
+            return mapper.Map<ExperienciaLaboralDTO>(experiencialaboral);
+        }
+
         public async Task<string> Post(ExperienciaLaboralCDTO experienciaLaboralCDTO)
         {
             var experiencialaboral = mapper.Map<ExperienciaLaboral>(experienciaLaboralCDTO);
             context.Add(experiencialaboral);
             await context.SaveChangesAsync();
             return "Creado Correctamente";
+        }
+
+        public async Task<string> Put(int Id, ExperienciaLaboralCDTO experienciaLaboralCDTO)
+        {
+            var experiencialaboral = await context.ExperienciaLaboral.FirstOrDefaultAsync(x => x.ExperienciaLaboralID == Id);
+            experiencialaboral = mapper.Map(experienciaLaboralCDTO, experiencialaboral);
+            await context.SaveChangesAsync();
+            return "Editado Correctamente";
         }
     }
 }
