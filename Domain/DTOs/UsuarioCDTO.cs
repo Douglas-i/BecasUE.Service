@@ -25,5 +25,6 @@ namespace Domain.DTOs
 
         [Required]
         public int RolID { get; set; }
+        public int PersonaId { get; set; }
     }
 }

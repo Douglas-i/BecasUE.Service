@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231119235402_Initial")]
+    [Migration("20231120003931_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -404,7 +404,8 @@ namespace DataAccess.Migrations
 
                     b.HasKey("UsuarioID");
 
-                    b.HasIndex("PersonaId");
+                    b.HasIndex("PersonaId")
+                        .IsUnique();
 
                     b.ToTable("Usuario");
                 });

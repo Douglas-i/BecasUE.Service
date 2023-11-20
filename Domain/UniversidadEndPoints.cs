@@ -24,9 +24,14 @@ namespace Domain
 
         public async Task<List<UniversidadDTO>> Get()
         {
-            var universidad = await context.Universidad.ToListAsync();
-            Console.WriteLine(universidad);
+            var universidad = await context.Universidad.ToListAsync();            
             return mapper.Map<List<UniversidadDTO>>(universidad);
+        }
+
+        public async Task<UniversidadDTO> Get_Id(int Id)
+        {
+            var universidad = await context.Universidad.FirstOrDefaultAsync(x => x.universidadId == Id);         
+            return mapper.Map<UniversidadDTO>(universidad);
         }
 
         public async Task<string> Post(UniversidadCreacionDTO universidadCreacionDTO)
@@ -35,6 +40,14 @@ namespace Domain
             context.Add(universidad);
             await context.SaveChangesAsync();
             return "Creado Correctamente";
+        }
+
+        public async Task<string> Put(int Id, UniversidadCreacionDTO universidadCreacionDTO)
+        {
+            var universidad = await context.Universidad.FirstOrDefaultAsync(x => x.universidadId == Id);
+            universidad = mapper.Map(universidadCreacionDTO, universidad);
+            await context.SaveChangesAsync();
+            return "Editado Correctamente";
         }
 
     }

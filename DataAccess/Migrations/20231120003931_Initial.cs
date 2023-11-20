@@ -317,7 +317,8 @@ namespace DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Usuario_PersonaId",
                 table: "Usuario",
-                column: "PersonaId");
+                column: "PersonaId",
+                unique: true);
         }
 
         /// <inheritdoc />

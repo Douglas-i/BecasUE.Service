@@ -13,7 +13,7 @@ namespace BecasUE.Controllers
         private readonly UniversidadDTO universidadDTO;
         //private readonly ApplicationDbContext context;
 
-        public UniversidadController(ILogger<UniversidadController> logger, UniversidadEndPoints universidad, UniversidadDTO universidadDTO )
+        public UniversidadController(ILogger<UniversidadController> logger, UniversidadEndPoints universidad, UniversidadDTO universidadDTO)
         {
             this.logger = logger;
             this.universidad = universidad;
@@ -26,10 +26,22 @@ namespace BecasUE.Controllers
             return await universidad.Get();
         }
 
+        [HttpGet("{Id:int}")]
+        public async Task<ActionResult<UniversidadDTO>> Get_Id(int Id)
+        {
+            return await universidad.Get_Id(Id);
+        }
+
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] UniversidadCreacionDTO universidadCreacionDTO)
         {
             return await universidad.Post(universidadCreacionDTO);
+        }
+
+        [HttpPut("{Id:int}")]
+        public async Task<ActionResult<string>> Put(int Id, [FromBody] UniversidadCreacionDTO universidadCreacionDTO)
+        {
+            return await universidad.Put(Id, universidadCreacionDTO);
         }
     }
 }

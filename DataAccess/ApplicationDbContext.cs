@@ -71,6 +71,11 @@ namespace DataAccess
                 .WithOne(sa => sa.SolicitudesProgramas)
                 .HasForeignKey(sp => sp.SolicitudID);
 
+            //Atributos Unicos
+            modelBuilder.Entity<Usuario>()
+               .HasIndex(u => u.PersonaId)
+               .IsUnique();
+
             base.OnModelCreating(modelBuilder);
         }
 
