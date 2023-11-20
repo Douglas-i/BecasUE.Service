@@ -28,6 +28,12 @@ namespace BecasUE.Controllers
             return await programasTitulacion.Get();
         }
 
+        [HttpGet("{Id:int}")]
+        public async Task<ActionResult<ProgramasTitulacionDTO>> Get_Id(int Id)
+        {
+            return await programasTitulacion.Get_Id(Id);
+        }
+
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] ProgramasTitualcionCDTO programasTitualcionCDTO)
         {
@@ -38,6 +44,12 @@ namespace BecasUE.Controllers
 
             return await programasTitulacion.Post(programasTitualcionCDTO);
             //return await estudiosAcademicos.Post(estudiosAcademicosCDTO);
+        }
+
+        [HttpPut("{Id:int}")]
+        public async Task<ActionResult<string>> Put(int Id, [FromBody] ProgramasTitualcionCDTO programasTitualcionCDTO)
+        {
+            return await programasTitulacion.Put(Id, programasTitualcionCDTO);
         }
     }
 }
