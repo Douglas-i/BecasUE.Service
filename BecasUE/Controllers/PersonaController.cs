@@ -29,10 +29,22 @@ namespace BecasUE.Controllers
             return await persona.Get();
         }
 
+        [HttpGet("{Id:int}")]
+        public async Task<ActionResult<PersonaDTO>> Get_Id(int Id)
+        {
+            return await persona.Get_Id(Id);
+        }
+
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] PersonaCDTO personaCDTO)
         {
             return await persona.Post(personaCDTO);
+        }
+
+        [HttpPut("{Id:int}")]
+        public async Task<ActionResult<string>> Put(int Id, [FromBody] PersonaCDTO personaCDTO)
+        {
+            return await persona.Put(Id, personaCDTO);
         }
     }
 }
