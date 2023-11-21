@@ -4,6 +4,7 @@ using Domain.DTOs;
 using Domain.DTOs.ProgramasOfertados;
 using Domain.DTOs.ProgramasTitualcion;
 using Domain.DTOs.Relaciones;
+using Domain.DTOs.SolicitudesProgramas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,9 @@ namespace Domain.Utilidades
                 .ForMember(X => X.Universidad, options => options.MapFrom(MapearProgramasOfertaUniversidad))
                 .ForMember(X => X.OfertaAnual, options => options.MapFrom(MapearProgramasOfertaAnual));
             CreateMap<ProgramasOfertadosCDTO, ProgramasOfertados>();
+
+            CreateMap<SolicitudesProgramas, SolicitudesProgramasDTO>().ReverseMap();
+            CreateMap<SolicitudesProgramasCDTO, SolicitudesProgramas>();
         }
 
         private List<TiposEspecialidadDTO> MapearProgramasTitualcionEspecialidad(ProgramasTitulacion programasTitulacion, ProgramasTitulacionDTO programasTitulacionDTO)
