@@ -29,12 +29,26 @@ namespace Domain
             return mapper.Map<List<TiposEspecialidadDTO>>(tipoespecialidad);
         }
 
+
+        public async Task<TiposEspecialidadDTO> Get_Id(int Id)
+        {
+            var TiposEspecialidad = await context.TiposEspecialidad.FirstOrDefaultAsync(x => x.TipoEspecialidadID == Id);
+            return mapper.Map<TiposEspecialidadDTO>(TiposEspecialidad);
+        }
         public async Task<string> Post(TiposEspecialidadCDTO tiposEspecialidadCDTO)
         {
             var tipoespecialidad = mapper.Map<TiposEspecialidad>(tiposEspecialidadCDTO);
             context.Add(tipoespecialidad);
             await context.SaveChangesAsync();
             return "Tipo de Especialidad creada correctamente";
+        }
+
+        public async Task<string> Put(int Id, TiposEspecialidadCDTO tiposEspecialidadCDTO)
+        {
+            var tiposEspecialidad= await context.TiposEspecialidad.FirstOrDefaultAsync(x => x.TipoEspecialidadID == Id);
+            tiposEspecialidad = mapper.Map(tiposEspecialidadCDTO, tiposEspecialidad);
+            await context.SaveChangesAsync();
+            return "Editado Correctamente";
         }
     }
 

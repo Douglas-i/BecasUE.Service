@@ -29,12 +29,26 @@ namespace Domain
             return mapper.Map<List<UsuarioDTO>>(usuario);
         }
 
+        public async Task<UsuarioDTO> Get_Id(int Id)
+        {
+            var usuario = await context.Usuario.FirstOrDefaultAsync(x => x.UsuarioID == Id);
+            return mapper.Map<UsuarioDTO>(usuario);
+        }
+
         public async Task<string> Post(UsuarioCDTO usuarioCDTO)
         {
             var usuario = mapper.Map<Usuario>(usuarioCDTO);
             context.Add(usuario);
             await context.SaveChangesAsync();
             return "Usuario creado correctamente";
+        }
+
+        public async Task<string> Put(int Id, UsuarioCDTO usuarioCDTO)
+        {
+            var usuario = await context.Usuario.FirstOrDefaultAsync(x => x.UsuarioID == Id);
+            usuario = mapper.Map(usuarioCDTO, usuario);
+            await context.SaveChangesAsync();
+            return "Editado Correctamente";
         }
     }
 }

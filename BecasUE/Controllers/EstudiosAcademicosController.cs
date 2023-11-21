@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using DataAccess.Entities;
+using Domain;
 using Domain.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,12 @@ namespace BecasUE.Controllers
             return await estudiosAcademicos.Get();
         }
 
+        [HttpGet("{Id:int}")]
+        public async Task<ActionResult<EstudiosAcademicosDTO>> Get_Id(int Id)
+        {
+            return await estudiosAcademicos.Get_Id(Id);
+        }
+
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] EstudiosAcademicosCDTO estudiosAcademicosCDTO)
         {
@@ -44,6 +51,12 @@ namespace BecasUE.Controllers
 
             return await estudiosAcademicos.Post(estudiosAcademicosCDTO);
             //return await estudiosAcademicos.Post(estudiosAcademicosCDTO);
+        }
+
+        [HttpPut("{Id:int}")]
+        public async Task<ActionResult<string>> Put(int Id, [FromBody] EstudiosAcademicosCDTO estudiosAcademicosCDTO)
+        {
+            return await estudiosAcademicos.Put(Id, estudiosAcademicosCDTO);
         }
     }
 }
