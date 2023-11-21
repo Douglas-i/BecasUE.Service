@@ -3,6 +3,7 @@ using Domain;
 using Domain.DTOs;
 using Domain.DTOs.ProgramasOfertados;
 using Domain.DTOs.Relaciones;
+using Domain.DTOs.SolicitudesProgramas;
 using Domain.Utilidades;
 using Microsoft.EntityFrameworkCore;
 
@@ -63,6 +64,10 @@ builder.Services.AddTransient<ProgramasTitulacionDTO>();
 
 builder.Services.AddTransient<ProgramasOfertadosEP>();
 builder.Services.AddTransient<ProgramasOfertadosDTO>();
+
+builder.Services.AddTransient<SolicitudesProgramasEP>();
+builder.Services.AddTransient<SolicitudesProgramasDTO>();
+builder.Services.AddTransient<SolicitudesProgramasCDTO>();
 
 //Configuraciones para permitir peticiones desde el front
 builder.Services.AddCors(options =>
