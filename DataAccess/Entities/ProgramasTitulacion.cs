@@ -11,7 +11,7 @@ namespace DataAccess.Entities
     {
         [Key]
         [Required]
-        public int ProgramasId { get; set; }
+        public int ProgramaId { get; set; }
         [Required]
         [StringLength(maximumLength: 100)]
         public string TituloPrograma { get; set; }
