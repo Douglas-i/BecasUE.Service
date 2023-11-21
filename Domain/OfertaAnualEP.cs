@@ -29,12 +29,25 @@ namespace Domain
             return mapper.Map<List<OfertaAnualDTO>>(ofertaanual);
         }
 
+        public async Task<OfertaAnualDTO> Get_Id(int Id)
+        {
+            var ofertaAnual = await context.OfertaAnual.FirstOrDefaultAsync(x => x.OfertaID == Id);
+            return mapper.Map<OfertaAnualDTO>(ofertaAnual);
+        }
+
         public async Task<string> Post(OfertaAnualCDTO ofertaAnualCDTO)
         {
             var ofertaanual = mapper.Map<OfertaAnual>(ofertaAnualCDTO);
             context.Add(ofertaanual);
             await context.SaveChangesAsync();
             return "Oferta Anual creada correctamente";
+        }
+        public async Task<string> Put(int Id, OfertaAnualCDTO ofertaAnualCDTO)
+        {
+            var ofertaAnual = await context.OfertaAnual.FirstOrDefaultAsync(x => x.OfertaID == Id);
+            ofertaAnual = mapper.Map(ofertaAnualCDTO, ofertaAnual);
+            await context.SaveChangesAsync();
+            return "Editado Correctamente";
         }
     }
 }

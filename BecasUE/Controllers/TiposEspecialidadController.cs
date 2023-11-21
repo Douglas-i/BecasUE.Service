@@ -29,10 +29,23 @@ namespace BecasUE.Controllers
             return await tipoespecialidad.Get();
         }
 
+        [HttpGet("{Id:int}")]
+        public async Task<ActionResult<TiposEspecialidadDTO>> Get_Id(int Id)
+        {
+            return await tipoespecialidad.Get_Id(Id);
+        }
+
+
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] TiposEspecialidadCDTO tiposEspecialidadCDTO)
         {
             return await tipoespecialidad.Post(tiposEspecialidadCDTO);
+        }
+
+        [HttpPut("{Id:int}")]
+        public async Task<ActionResult<string>> Put(int Id, [FromBody] TiposEspecialidadCDTO tiposEspecialidadCDTO)
+        {
+            return await tipoespecialidad.Put(Id, tiposEspecialidadCDTO);
         }
     }
 }
