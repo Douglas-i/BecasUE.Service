@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DataAccess.Entities;
 using Domain.DTOs;
+using Domain.DTOs.ProgramasOfertados;
 using Domain.DTOs.ProgramasTitualcion;
 using Domain.DTOs.Relaciones;
 using System;
@@ -43,9 +44,15 @@ namespace Domain.Utilidades
             CreateMap<TiposEspecialidadCDTO, TiposEspecialidad>();
 
             //Relaciones
-            CreateMap<ProgramasTitulacion, ProgramasTitulacionDTO>()/*.ReverseMap()*/
+            CreateMap<ProgramasTitulacion, ProgramasTitulacionDTO>()
                 .ForMember(x => x.Especialidades, options => options.MapFrom(MapearProgramasTitualcionEspecialidad));
             CreateMap<ProgramasTitualcionCDTO, ProgramasTitulacion>();
+
+            CreateMap<ProgramasOfertados, ProgramasOfertadosDTO>()                
+                //.ForMember(x => x.ProgramasTitualcion, options => options.MapFrom(MapearProgramasOfertaPrograma))
+                .ForMember(X => X.Universidad, options => options.MapFrom(MapearProgramasOfertaUniversidad))
+                .ForMember(X => X.OfertaAnual, options => options.MapFrom(MapearProgramasOfertaAnual));
+            CreateMap<ProgramasOfertadosCDTO, ProgramasOfertados>();
         }
 
         private List<TiposEspecialidadDTO> MapearProgramasTitualcionEspecialidad(ProgramasTitulacion programasTitulacion, ProgramasTitulacionDTO programasTitulacionDTO)
@@ -55,6 +62,39 @@ namespace Domain.Utilidades
             if (programasTitulacion.Especialidad != null)
             {
                 resultado.Add(new TiposEspecialidadDTO() { TipoEspecialidadID = programasTitulacion.Especialidad.TipoEspecialidadID, NombreTipoEspecialidad = programasTitulacion.Especialidad.NombreTipoEspecialidad});
+            }
+            return resultado;
+        }
+
+        private List<ProgramasTitulacionDTO> MapearProgramasOfertaPrograma(ProgramasOfertados programasOfertados, ProgramasOfertadosDTO programasOfertadosDTO)
+        {
+            var resultado = new List<ProgramasTitulacionDTO>();
+
+            if (programasOfertados.Programas != null)
+            {
+                resultado.Add(new ProgramasTitulacionDTO() { ProgramaId = programasOfertados.Programas.ProgramaId, TituloPrograma = programasOfertados.Programas.TituloPrograma});
+            }
+            return resultado;
+        }
+
+        private List<UniversidadDTO> MapearProgramasOfertaUniversidad(ProgramasOfertados programasOfertados, ProgramasOfertadosDTO programasOfertadosDTO)
+        {
+            var resultado = new List<UniversidadDTO>();
+
+            if (programasOfertados.Universidad != null)
+            {
+                resultado.Add(new UniversidadDTO() { universidadId = programasOfertados.Universidad.universidadId, universidadNombre = programasOfertados.Universidad.universidadNombre });
+            }
+            return resultado;
+        }
+
+        private List<OfertaAnualDTO> MapearProgramasOfertaAnual(ProgramasOfertados programasOfertados, ProgramasOfertadosDTO programasOfertadosDTO)
+        {
+            var resultado = new List<OfertaAnualDTO>();
+
+            if (programasOfertados.Oferta != null)
+            {
+                resultado.Add(new OfertaAnualDTO() { OfertaID = programasOfertados.Oferta.OfertaID, FechaApertura = programasOfertados.Oferta.FechaApertura });
             }
             return resultado;
         }
