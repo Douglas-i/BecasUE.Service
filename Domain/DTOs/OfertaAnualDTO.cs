@@ -11,7 +11,7 @@ namespace Domain.DTOs
     {
         public int OfertaID { get; set; }
 
-        public int Año { get; set; }
+        public int Anio { get; set; }
 
         public DateTime FechaApertura { get; set; }
 
