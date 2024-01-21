@@ -15,7 +15,7 @@ namespace Domain.DTOs
 
         public string ApellidoPersona { get; set; }
 
-        public string PaísPrecedencia { get; set; }
+        public string PaisPrecedencia { get; set; }
 
         public string CorreoElectronico { get; set; }
 

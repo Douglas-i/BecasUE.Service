@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Domain.DTOs.SolicitudesProgramas;
+using Domain.DTOs;
 
 namespace Domain
 {
@@ -35,6 +36,14 @@ namespace Domain
             context.Add(solicitudesProgramas);
             await context.SaveChangesAsync();
             return "Programa de TItualacion creado Correctamente";
+        }
+
+        public async Task<string> Put(int Id, SolicitudesProgramasCDTO solicitudesProgramasCDTO)
+        {
+            var solicitudes = await context.SolicitudesProgramas.FirstOrDefaultAsync(x => x.SolicitudId == Id);
+            solicitudes = mapper.Map(solicitudesProgramasCDTO, solicitudes);
+            await context.SaveChangesAsync();
+            return "Editado Correctamente";
         }
     }
 }

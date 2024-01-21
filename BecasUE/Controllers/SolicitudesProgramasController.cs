@@ -36,5 +36,11 @@ namespace BecasUE.Controllers
 
             return await solicitudesProgramas.Post(solicitudesProgramasCDTO);            
         }
+
+        [HttpPut("{Id:int}")]
+        public async Task<ActionResult<string>> Put(int Id, [FromBody] SolicitudesProgramasCDTO solicitudesProgramasCDTO)
+        {
+            return await solicitudesProgramas.Put(Id, solicitudesProgramasCDTO);
+        }
     }
 }
