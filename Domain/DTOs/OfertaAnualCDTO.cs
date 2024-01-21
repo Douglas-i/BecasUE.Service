@@ -10,7 +10,7 @@ namespace Domain.DTOs
     public class OfertaAnualCDTO
     {       
         [Required]
-        public int Año { get; set; }
+        public int Anio { get; set; }
 
         [Required]
         public DateTime FechaApertura { get; set; }

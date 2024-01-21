@@ -22,6 +22,11 @@ namespace BecasUE.Controllers
             this.estudiosAcademicosDTO = estudiosAcademicosDTO;
         }
 
+        /// <summary>
+        /// Prueba de comentario
+        /// </summary>
+        /// <Description>Descripcion xd</Description>
+        /// <returns>Prueba en el return</returns>
         [HttpGet]
         public async Task<ActionResult<List<EstudiosAcademicosDTO>>> Get()
         {

@@ -27,9 +27,9 @@ namespace Domain
         public async Task<List<ProgramasOfertadosDTO>> Get()
         {
             var programasOfertados = await context.ProgramasOfertados                                                
-                                                .Include(x => x.Universidad)
+                                                //.Include(x => x.Universidad)
                                                 //.Include(p => p.Programas).ThenInclude(e => e.Especialidad)
-                                                .Include(o => o.Oferta)                                                
+                                                //.Include(o => o.Oferta)                                                
                                                 .ToArrayAsync();
             return mapper.Map<List<ProgramasOfertadosDTO>>(programasOfertados);
         }

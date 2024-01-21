@@ -13,5 +13,7 @@ namespace Domain.DTOs.SolicitudesProgramas
         public string Resumen { get; set; }
         public DateTime FechaSolicitud { get; set; }
         public string Estado { get; set; }
+        public int PersonaId { get; set; }
+        public int ProgramaOfertadoId { get; set; }
     }
 }

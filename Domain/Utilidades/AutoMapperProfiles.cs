@@ -49,10 +49,10 @@ namespace Domain.Utilidades
                 .ForMember(x => x.Especialidades, options => options.MapFrom(MapearProgramasTitualcionEspecialidad));
             CreateMap<ProgramasTitualcionCDTO, ProgramasTitulacion>();
 
-            CreateMap<ProgramasOfertados, ProgramasOfertadosDTO>()                
+            CreateMap<ProgramasOfertados, ProgramasOfertadosDTO>();                
                 //.ForMember(x => x.ProgramasTitualcion, options => options.MapFrom(MapearProgramasOfertaPrograma))
-                .ForMember(X => X.Universidad, options => options.MapFrom(MapearProgramasOfertaUniversidad))
-                .ForMember(X => X.OfertaAnual, options => options.MapFrom(MapearProgramasOfertaAnual));
+                //.ForMember(X => X.Universidad, options => options.MapFrom(MapearProgramasOfertaUniversidad))
+                //.ForMember(X => X.OfertaAnual, options => options.MapFrom(MapearProgramasOfertaAnual));
             CreateMap<ProgramasOfertadosCDTO, ProgramasOfertados>();
 
             CreateMap<SolicitudesProgramas, SolicitudesProgramasDTO>().ReverseMap();
